@@ -20,4 +20,8 @@
     <Folder Include="Support\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StockApp\StockApp.csproj" />
+  </ItemGroup>
+
 </Project>
