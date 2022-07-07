@@ -27,7 +27,7 @@ namespace SpecFlowTutorialProject.Features
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-        private string[] _featureTags = ((string[])(null));
+        private static string[] featureTags = ((string[])(null));
         
 #line 1 "StockControl.feature"
 #line hidden
@@ -48,7 +48,7 @@ namespace SpecFlowTutorialProject.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "StockControl", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "StockControl", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -60,7 +60,7 @@ namespace SpecFlowTutorialProject.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute()]
-        public virtual void TestInitialize()
+        public void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
                         && (testRunner.FeatureContext.FeatureInfo.Title != "StockControl")))
@@ -70,23 +70,23 @@ namespace SpecFlowTutorialProject.Features
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute()]
-        public virtual void TestTearDown()
+        public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
         }
         
-        public virtual void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
+        public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
             testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Microsoft.VisualStudio.TestTools.UnitTesting.TestContext>(_testContext);
         }
         
-        public virtual void ScenarioStart()
+        public void ScenarioStart()
         {
             testRunner.OnScenarioStart();
         }
         
-        public virtual void ScenarioCleanup()
+        public void ScenarioCleanup()
         {
             testRunner.CollectScenarioErrors();
         }
@@ -105,21 +105,11 @@ namespace SpecFlowTutorialProject.Features
             argumentsOfScenario.Add("AmountStockToBuy", amountStockToBuy);
             argumentsOfScenario.Add("StockCode", stockCode);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a StockApp User I want to purchase a given amount of stock at the latest value" +
-                    " So that I can increase the value of my portfolio", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+                    " So that I can increase the value of my portfolio", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
                 testRunner.SkipScenario();
             }
@@ -136,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("I purchase \'{0}\' amount of \'{1}\' at the latest value", amountStockToBuy, stockCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("My portfolio has increase in value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("My portfolio has increase in value \'{0}\'", initialPortfolioValue), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -151,7 +141,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Initial Portfolio Value", "1500")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AmountStockToBuy", "10")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:StockCode", "MSFT")]
-        public virtual void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_1500()
+        public void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_1500()
         {
 #line 6
 this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio("1500", "10", "MSFT", ((string[])(null)));
@@ -167,7 +157,7 @@ this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICan
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Initial Portfolio Value", "0")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AmountStockToBuy", "5")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:StockCode", "SBUX")]
-        public virtual void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_0()
+        public void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_0()
         {
 #line 6
 this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio("0", "5", "SBUX", ((string[])(null)));
@@ -183,7 +173,7 @@ this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICan
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Initial Portfolio Value", "100")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AmountStockToBuy", "3")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:StockCode", "AMZN")]
-        public virtual void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_100()
+        public void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_100()
         {
 #line 6
 this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio("100", "3", "AMZN", ((string[])(null)));
@@ -199,7 +189,7 @@ this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICan
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Initial Portfolio Value", "25000")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:AmountStockToBuy", "8")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:StockCode", "BA")]
-        public virtual void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_25000()
+        public void AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio_25000()
         {
 #line 6
 this.AsAStockAppUserIWantToPurchaseAGivenAmountOfStockAtTheLatestValueSoThatICanIncreaseTheValueOfMyPortfolio("25000", "8", "BA", ((string[])(null)));

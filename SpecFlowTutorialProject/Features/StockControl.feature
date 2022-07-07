@@ -7,7 +7,7 @@ Scenario: As a StockApp User I want to purchase a given amount of stock at the l
 	Given That i am a StockApp User
 	And My initial portfolio has a value of '<Initial Portfolio Value>'
 	When I purchase '<AmountStockToBuy>' amount of '<StockCode>' at the latest value
-	Then My portfolio has increase in value
+	Then My portfolio has increase in value '<Initial Portfolio Value>'
 	Examples: 
 	| Initial Portfolio Value | AmountStockToBuy | StockCode |
 	| 1500                    | 10               | MSFT      |

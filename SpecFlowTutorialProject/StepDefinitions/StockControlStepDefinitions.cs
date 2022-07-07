@@ -1,6 +1,4 @@
 using StockApp;
-using System;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowTutorialProject.StepDefinitions
 {
@@ -12,25 +10,32 @@ namespace SpecFlowTutorialProject.StepDefinitions
         [Given(@"That i am a StockApp User")]
         public void GivenThatIAmAStockAppUser()
         {
-            throw new PendingStepException();
+            stockApp.User = "DemoUser";
+            //throw new PendingStepException();
         }
 
         [Given(@"My initial portfolio has a value of '([^']*)'")]
-        public void GivenMyInitialPortfolioHasAValueOf(string p0)
+        public void GivenMyInitialPortfolioHasAValueOf(string portfolioValue)
         {
-            throw new PendingStepException();
+            stockApp.SetPortfolioValue(int.Parse(portfolioValue));
+            //throw new PendingStepException();
         }
 
         [When(@"I purchase '([^']*)' amount of '([^']*)' at the latest value")]
-        public void WhenIPurchaseAmountOfAtTheLatestValue(string p0, string mSFT)
+        public void WhenIPurchaseAmountOfAtTheLatestValue(string amount, string stockCode)
         {
-            throw new PendingStepException();
+            stockApp.PurchaseStock(amount, stockCode);
+            //throw new PendingStepException();
         }
 
-        [Then(@"My portfolio has increase in value")]
-        public void ThenMyPortfolioHasIncreaseInValue()
+        [Then(@"My portfolio has increase in value '([^']*)'")]
+        public void ThenMyPortfolioHasIncreaseInValue(string portfolioValue)
         {
-            throw new PendingStepException();
+            int initialPortfolioValue = int.Parse(portfolioValue);
+            int newPortfolioValue = stockApp.PortfolioVaule;
+
+            newPortfolioValue.Should().BeGreaterThan(initialPortfolioValue);
+            //throw new PendingStepException();
         }
     }
 }
